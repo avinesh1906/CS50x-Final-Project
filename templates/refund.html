@@ -1,0 +1,54 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Refund
+{% endblock %}
+
+{% block main %}
+<div class="container">
+    <form action="/refund" method="post">
+        <div class="row">
+            <h4>Refund Details</h4>
+            <div class="input-group input-group-icon">
+                <div class="input-group-prepend">
+                    <button class="btn btn-outline-secondary" type="button">Type</button>
+                </div>
+                  <select class="custom-select" name = "type">
+                    <option selected>Choose...</option>
+                    <option value="Groceries">Groceries</option>
+                    <option value="Leisure and Entertainment">Leisure and Entertainment</option>
+                    <option value="Others">Others</option>
+                  </select>
+            </div>
+            <div class="input-group input-group-icon">
+
+                <input autocomplete="off"  type="date" style= "color:#7D3C98;" name ="date" placeholder="Date" />
+                <div class="input-icon"><i class="fa fa-calendar"></i></div>
+            </div>
+            <div class="input-group input-group-icon">
+                <input type="number" name = "price" placeholder="Price"/>
+                <div class="input-icon"><i class="fa fa-money"></i></div>
+            </div>
+            <div class="input-group input-group-icon">
+                <input type="number" name = "numberoftype" placeholder="Number of item refund"/>
+                <div class="input-icon"><i class="fas fa-balance-scale"></i></div>
+            </div>
+            <div class="input-group input-group-icon">
+                <div class="input-group-prepend">
+                    <button class="btn btn-outline-secondary" type="button">Refund Method</button>
+                </div>
+                  <select class="custom-select" name = "refundtype">
+                    <option selected>Choose...</option>
+                    <option value="Groceries">Card</option>
+                    <option value="Leisure and Entertainment">Paypal</option>
+                    <option value="Others">Cash</option>
+                  </select>
+            </div>
+            <div class="row">
+                <input class="but" type="submit" value="Refund">
+            </div>
+        </div>
+    </form>
+</div>
+
+{% endblock %}

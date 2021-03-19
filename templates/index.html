@@ -1,0 +1,169 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Home
+{% endblock %}
+
+{% block main %}
+<div class="row row-cols-1 row-cols-md-2">
+  <div class="col mb-4">
+    <div class="card">
+      <div class="card-body">
+        <div class="card-header bg-transparent border-success" style= "color:#196F3D; font-size: x-large;">Current Weekly Purchases</div>
+        <script type="text/javascript"src="https://www.gstatic.com/charts/loader.js"></script>
+            <script type="text/javascript">
+              google.charts.load("current", {packages:['corechart']});
+              google.charts.setOnLoadCallback(drawChart);
+              function drawChart() {
+                var data = google.visualization.arrayToDataTable([
+                 	{% for key, value in dataweek.items() %}
+            				{% if value is string %}
+            					['{{ key }}', '{{ value }}', { role: 'style' }],
+            				{% else %}
+            					['{{ key }}', {{ value }}, '#196F3D'],
+            				{% endif %}
+            			{% endfor %}
+                ]);
+
+                var view = new google.visualization.DataView(data);
+                view.setColumns([0, 1,
+                                 { calc: "stringify",
+                                   sourceColumn: 1,
+                                   type: "string",
+                                   role: "annotation" },
+                                 2]);
+
+                var options = {
+                  title: "Weekly Total Purchases",
+                  width: 600,
+                  height: 400,
+                  bar: {groupWidth: "95%"},
+                  legend: { position: "none" },
+                };
+                var chart = new google.visualization.ColumnChart(document.getElementById("columnchart_values"));
+                chart.draw(view, options);
+            }
+            </script>
+        <div id="columnchart_values" style="width: 800px; height: 400px;"></div>
+      </div>
+    </div>
+  </div>
+  <div class="col mb-4">
+    <div class="card">
+      <div class="card-body">
+        <div class="card-header bg-transparent border-success" style= "color:#196F3D; font-size: x-large;">Payment Type </div>
+            <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+            <script type="text/javascript">
+                google.charts.load("current", {packages:["corechart"]});
+                google.charts.setOnLoadCallback(drawChart);
+                function drawChart() {
+                  var data = google.visualization.arrayToDataTable([
+                  {% for key, value in datapayment.items() %}
+            				{% if value is string %}
+            					['{{ key }}', '{{ value }}'],
+            				{% else %}
+            					['{{ key }}', {{ value }} ],
+            				{% endif %}
+            			{% endfor %}
+                  ]);
+
+                  var options = {
+                    title: 'Payment Method',
+                    pieHole: 0.4569,
+                    colors: ['#4682B4', '#87CEEB', '#0000CD']
+                  };
+
+                  var chart = new google.visualization.PieChart(document.getElementById('donutchart'));
+                  chart.draw(data, options);
+                }
+            </script>
+        <div id="donutchart" style="width: 850px; height: 400px;"></div>
+      </div>
+    </div>
+  </div>
+  <div class="col mb-4">
+    <div class="card">
+      <div class="card-body">
+        <div class="card-header bg-transparent border-success" style= "color:#196F3D; font-size: x-large;">Monthly Purchases</div>
+          <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+       <script type="text/javascript">
+         google.charts.load('current', {packages: ['corechart', 'line']});
+      google.charts.setOnLoadCallback(drawBackgroundColor);
+
+      function drawBackgroundColor() {
+            var data = new google.visualization.DataTable();
+            data.addColumn('date', 'Month')
+            data.addColumn('number', 'Groceries');
+            data.addColumn('number', 'Leisure and Entertainment');
+            data.addColumn('number', 'Others');
+
+            data.addRows([
+              {% for key, value in datatotal.items() %}
+               {% if value is not string %}
+                [new Date(2020, {{value[3]}}),  {{value[0]}},  {{value[1]}}, {{value[2]}}],
+               {% endif %}
+              {% endfor %}
+            ]);
+
+            var options = {
+              hAxis: {
+                title: 'Month'
+              },
+              vAxis: {
+                title: 'Total purchases ($)'
+              },
+              backgroundColor: '#FFFFFF'
+            };
+
+            var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
+            chart.draw(data, options);
+          }
+          </script>
+        <body>
+          <div id="chart_div" style="width: 600px; height: 400px;"></div>
+        </body>
+
+      </div>
+    </div>
+  </div>
+  <div class="col mb-4">
+    <div class="card">
+      <div class="card-body">
+        <div class="card-header bg-transparent border-success" style= "color:#196F3D; font-size: x-large;">Purchase Type</div>
+
+          <head>
+      	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load("current", {packages:["corechart"]});
+      google.charts.setOnLoadCallback(drawChart);
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+			{% for key, value in data.items() %}
+				{% if value is string %}
+					['{{ key }}', '{{ value }}'],
+				{% else %}
+					['{{ key }}', {{ value }}],
+				{% endif %}
+			{% endfor %}
+        ]);
+
+        var options = {
+          title: 'Purchases',
+          is3D: true,
+          colors: ['#BA4A00', '#935116', '#D68910', '#D68910']
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('piechart_3d'));
+        chart.draw(data, options);
+      }
+    </script>
+          </head>
+          <body>
+            <div id="piechart_3d" style="width: 770px; height: 400px;"></div>
+          </body>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

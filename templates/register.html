@@ -1,0 +1,77 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Register
+{% endblock %}
+
+{% block main %}
+<div class="container">
+    <form action="/register" method="post">
+        <div class="row">
+          <h4>Account</h4>
+          <div class="input-group input-group-icon">
+            <input autocomplete="off" type="text" style= "color:#7D3C98;" name = "username" placeholder="Username"/>
+            <div class="input-icon"><i class="fa fa-user"></i></div>
+          </div>
+          <div class="input-group input-group-icon">
+            <input type="password" name = "password" style= "color:#7D3C98;" placeholder="Password"/>
+            <div class="input-icon"><i class="fa fa-key"></i></div>
+          </div>
+          <div class="input-group input-group-icon">
+            <input type="password" name = "confirmation" style= "color:#7D3C98;" placeholder="Password(Again)"/>
+            <div class="input-icon"><i class="fa fa-key"></i></div>
+          </div>
+        </div>
+
+            <script>
+                $(document).ready(function(){
+                    $('#card').show();
+                    $('#paypal').hide();
+                    $('input[type="radio"]').click(function(){
+                        if($(this).attr('id') == 'payment-method-card') {
+                            $('#card').show();
+                            $('#paypal').hide();
+                        }
+                        else if($(this).attr('id') == 'payment-method-paypal') {
+                            $('#paypal').show();
+                            $('#card').hide();
+                        }
+                    });
+                });
+            </script>
+
+
+        <h4>Payment Details</h4>
+        <div class="input-group">
+            <input id="payment-method-card" type="radio" name="payment-method" value="card" checked = "true"/>
+            <label for="payment-method-card"><span><i class="fa fa-cc-visa"></i>Credit Card</span></label>
+            <input id="payment-method-paypal" type="radio" name="payment-method" value="paypal"/>
+            <label for="payment-method-paypal"> <span><i class="fa fa-cc-paypal"></i>Paypal</span></label>
+
+            <div id = "card" class="input-group input-group-icon">
+                <input type="text" name="cardnum" style= "color:#7D3C98;" placeholder="Card Number"/>
+                <div class="input-icon"><i class="fa fa-credit-card"></i></div>
+            </div>
+            <div id = "paypal" class="input-group input-group-icon">
+                <input type="text" name="paybalnum" style= "color:#7D3C98;" placeholder="Email or Phone Number"/>
+                <div class="input-icon"><i class="fa fa-phone"></i></div>
+            </div>
+
+        </div>
+
+       <div class="row">
+          <h4>Terms and Conditions</h4>
+          <div class="input-group">
+            <input id="terms" name="check" type="checkbox"/>
+            <label for="terms">I accept the terms and conditions for signing up to this service, and hereby confirm I have read the privacy policy.
+            <a href="https://www.termsfeed.com/live/488b3ae2-ca8a-492c-af91-876d9b33d5f9" target="_blank">Terms and Conditions</a></label>
+          </div>
+        </div>
+        <div class="row">
+            <input class="but" type="submit" id="register" value="Register">
+        </div>
+
+    </form>
+
+
+{% endblock %}

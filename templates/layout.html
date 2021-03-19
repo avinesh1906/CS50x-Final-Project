@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+
+<html lang= "en">
+    <head>
+
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+        <link href="/static/icon.jpg" rel="icon">
+
+        <link href="/static/stylesheet.css" rel="stylesheet">
+
+        <!-- Optional JavaScript -->
+        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+
+        <title>The Expense: {% block title %} {% endblock %}</title>
+
+    </head>
+
+    <body>
+        <nav class="navbar sticky-top navbar-expand-md navbar-light bg-light border">
+            <a style="font-size: xx-large;" class="navbar-brand" href="/"><img src="/static/icon.ico" width="45" height="45" class="d-inline-block align-top" alt="" loading="lazy"> <span style="color: #006400;">T</span><span style="color: #FF8C00;">H</span><span style="color: #FF0000;">E</span> <span style="color: #778899;">Expense</span></a>
+            <button  class="navbar-toggler" type="button" data-target="#navigationbar" data-toggle="collapse" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation"  >
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navigationbar">
+                {% if session.user_id %}
+                    <ul class="navbar-nav mr-auto mt-2">
+                        <li style="font-size: x-large;" class="nav-item"><a class="nav-link" href="/">Home</a></li>
+                        <li style="font-size: x-large;" class="nav-item"><a class="nav-link" href="/insert">Insert</a></li>
+                        <li style="font-size: x-large;" class="nav-item"><a class="nav-link" href="/refund">Refund</a></li>
+                        <li style="font-size: x-large;" class="nav-item"><a class="nav-link" href="/history">History</a></li>
+                    </ul>
+                    <ul class="navbar-nav ml-auto mt-2">
+                        <li style="font-size: large;"class="nav-item"><a class="nav-link" href="/setting">Setting</a></li>
+                        <li style="font-size: large;" class="nav-item"><a class="nav-link" href="/logout">Log Out</a></li>
+                    </ul>
+                {% else %}
+                   <ul class="navbar-nav ml-auto mt-2">
+                        <li style="font-size: large;" class="nav-item"><a class="nav-link" href="/register">Register</a></li>
+                        <li style="font-size: large;"class="nav-item"><a class="nav-link" href="/login">Log In</a></li>
+                    </ul>
+                {% endif %}
+            </div>
+        </nav>
+        <main>
+            {% block main %}{% endblock %}
+        </main>
+         <footer class="small text-center text-muted">
+            Web based application designed by <a href="https://www.facebook.com/keshav.culloo/">Culloo Avinesh</a>.
+        </footer>
+    </body>
+
+</html>

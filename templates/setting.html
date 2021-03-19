@@ -1,0 +1,26 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Setting
+{% endblock %}
+
+{% block main %}
+
+<div class="container">
+    <form action="/setting" method="post">
+        <div class="row">
+            <h4>Setting</h4>
+            <div class="input-group input-group-icon">
+                <a href="/changeusername"  class="btn  btn-block btn-lg" style= "background-color: #F2F3F4; border-color:#F2F3F4; color : #145A32;" role="button" aria-pressed="true">
+                    Change Username
+                </a>
+            </div>
+            <div class="input-group input-group-icon">
+                <a href="/changepassword"  class="btn  btn-block btn-lg" style= "background-color: #F2F3F4; border-color:#F2F3F4; color : #145A32;" role="button" aria-pressed="true">
+                    Change Password
+                </a>
+            </div>
+    </form>
+</div>
+
+{% endblock %}

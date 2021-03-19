@@ -1,0 +1,25 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Change Username
+{% endblock %}
+
+{% block main %}
+<div class="container">
+    <form action="/changeusername" method="post">
+        <div class="row">
+            <h4>Change Username</h4>
+                  <div class="input-group input-group-icon">
+                    <input autocomplete="off" type="text" style= "color:#7D3C98;" name = "username"  aria-describedby="userhelp" placeholder="New username"/>
+                     <small id="userhelp" class="form-text text-muted">Current username: {{username}}</small>
+                    <div class="input-icon"><i class="fa fa-user"></i></div>
+                  </div>
+        </div>
+        <div class="row">
+            <input class="but" type="submit" id="register" value="Change">
+        </div>
+
+    </form>
+
+
+{% endblock %}

@@ -1,0 +1,45 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Log In
+{% endblock %}
+
+{% block main %}
+<div class="container">
+
+    <form action="/login" method="post">
+        <div class="row">
+            <h4>Account</h4>
+            <div class="input-group input-group-icon">
+                <input autocomplete="off" type="text" style= "color:#7D3C98;" name = "username" placeholder="Username"/>
+                <div class="input-icon"><i class="fa fa-user"></i></div>
+            </div>
+            <div class="input-group input-group-icon" id="show_hide_password">
+                <input type="password" name = "password" placeholder="Password"/>
+                <div class="input-icon"><i class="fa fa-key"></i></div>
+                <a href=""><i class="fa fa-eye-slash" aria-hidden="true"></i></a>
+            </div>
+            <div class="row">
+                <input class="but" id = "register" type="submit" value="Log In" >
+            </div>
+        </div>
+    </form>
+</div>
+<script>
+    $(document).ready(function() {
+        $("#show_hide_password a").on('click', function(event) {
+            event.preventDefault();
+            if($('#show_hide_password input').attr("type") == "text"){
+                $('#show_hide_password input').attr('type', 'password');
+                $('#show_hide_password i').addClass( "fa-eye-slash" );
+                $('#show_hide_password i').removeClass( "fa-eye" );
+            }else if($('#show_hide_password input').attr("type") == "password"){
+                $('#show_hide_password input').attr('type', 'text');
+                $('#show_hide_password i').removeClass( "fa-eye-slash" );
+                $('#show_hide_password i').addClass( "fa-eye" );
+            }
+        });
+    });
+</script>
+
+{% endblock %}
